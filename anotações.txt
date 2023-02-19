@@ -1,8 +1,0 @@
-trecho do código:
-
- quando passa --testdox , o nome do método faz sentido, vem todo formatado.
-   "scripts": {
-        "test": "vendor/bin/phpunit --testdox --colors"
-    }
-
-   

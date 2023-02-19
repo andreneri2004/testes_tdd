@@ -20,8 +20,8 @@ class ProductTest extends TestCase
 
     Public function testSeOSlugDoProdutoESetadoCorretamente(){
         $product = new Product();
-        $product->setSlug('Carro');
-        $this->assertEquals('Carro', $product->getSlug(), 'Valores não são iguais');
+        $product->setSlug('carro');
+        $this->assertEquals('carro', $product->getSlug(), 'Valores não são iguais');
     }
 
 }
