@@ -6,10 +6,35 @@ use PHPUnit\Framework\TestCase;
 
 class CartTest extends TestCase {
 
-    public function testSeClasseCarrinhoExiste()
+    private $carrinho;
+    private $produto;
+
+    public function setUp():void
     {
+        $this->carrinho = new Carrinho();
+    }
+
+    public function tearDown(): void
+    {
+        unset($this->carrinho);
+    }
+
+    // public function testSeClasseCarrinhoExiste()
+    // {
+    //     $class = class_exists('\\Code\\Carrinho');
+    //     $this->assertTrue($class);
+    // }
+
+      public function assertPreConditions(): void
+    {
+        // Executada sempre antes dos testes e do método setUp();
         $class = class_exists('\\Code\\Carrinho');
         $this->assertTrue($class);
+    }
+
+    public function assertPostConditions(): void 
+    {
+        // Executada sempre depois dos testes e do método tearDown();
     }
 
     public function testAdicaoDeProdutosNoCarrinho()
@@ -18,18 +43,19 @@ class CartTest extends TestCase {
         $produto1->setName('Mouse');
         $produto1->setPrice(500);
         $produto1->setSlug('mouse');
-
+        
         $produto2 = new Product();
         $produto2->setName('teclado');
         $produto2->setPrice(300);
         $produto2->setSlug('teclado');
 
-        $carrinho = new Carrinho();
+        $carrinho = $this->carrinho;
         $carrinho->addProduto($produto1);
         $carrinho->addProduto($produto2);
 
         $this->assertIsArray($carrinho->getProdutos());
         $this->assertInstanceOf('\\Code\\Product', $carrinho->getProdutos()[0]);
+        $this->assertInstanceOf('\\Code\\Product', $carrinho->getProdutos()[1]);
 
     }
 
@@ -40,7 +66,7 @@ class CartTest extends TestCase {
         $produto1->setPrice(500);
         $produto1->setSlug('mouse');
 
-        $carrinho = new Carrinho();
+        $carrinho = $this->carrinho;
         $carrinho->addProduto($produto1);
 
         $this->assertEquals('Mouse', $carrinho->getProdutos()[0]->getName());
@@ -52,19 +78,60 @@ class CartTest extends TestCase {
     {
         $produto1 = new Product();
         $produto1->setName('Mouse');
-        $produto1->setPrice(500);
+        $produto1->setPrice(300);
         $produto1->setSlug('mouse');
 
         $produto2 = new Product();
         $produto2->setName('teclado');
-        $produto2->setPrice(300);
+        $produto2->setPrice(200);
         $produto2->setSlug('teclado');
 
-        $carrinho = new Carrinho();
+        $carrinho = $this->carrinho;
         $carrinho->addProduto($produto1);
         $carrinho->addProduto($produto2);
 
         $this->assertEquals(2, $carrinho->totalProduto());
-        $this->assertEquals(800, $carrinho->totalCompra());
+        $this->assertEquals(500, $carrinho->totalCompra());
     }
+
+    //quando tem testes incompletos.
+    public function testIncompleto()
+    {
+        $this->assertTrue(true);
+        $this->markTestIncomplete('Teste Imcompleto');
+
+    }
+
+    //testar uma exeção versão antiga do phpunit
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Parâmetro inválido, informa um slug
+     */
+    public function testSeSetSlugLançaExceptionQuandoNãoInformada()
+    {
+
+         //Método apartir do phpUnit 9
+         $this->expectException('\InvalidArgumentException');
+         $this->expectExceptionMessage('Parâmetro inválido, informa um slug');
+
+
+        $produto = new Product();
+        $produto->setSlug('');
+    }
+
+    /**
+    * @requires PHP 5.2
+    */
+    public function testSeFeatureEspecificaParaVersaoPHPTrabalhaDeFormaEsperada()
+    {
+        //Modo padão,  acima via annotations
+        // if(PHP_VERSION != '7.4.0'){
+        //     $this->markTestSkipped('Este teste só roda para versão abaixo do PHP 7');
+        // }
+
+        $this->assertTrue(true);
+    }
+
+
 }

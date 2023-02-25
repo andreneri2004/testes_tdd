@@ -16,8 +16,6 @@ class Product
     public function setName($name)
     {
         $this->name = $name;
-
-        return $this;
     }
 
     public function getPrice()
@@ -25,12 +23,9 @@ class Product
         return $this->price;
     }
 
- 
     public function setPrice($price)
     {
         $this->price = $price;
-
-        return $this;
     }
 
     public function getSlug()
@@ -40,8 +35,9 @@ class Product
 
     public function setSlug($slug)
     {
+        if(!$slug){
+            throw new \InvalidArgumentException('Parâmetro inválido, informa um slug');
+        }
         $this->slug = $slug;
-
-        return $this;
     }
 }
