@@ -107,8 +107,9 @@ class CartTest extends TestCase {
     /**
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Parâmetro inválido, informa um slug
+     * @test
      */
-    public function testSeSetSlugLançaExceptionQuandoNãoInformada()
+    public function SeSetSlugLançaExceptionQuandoNãoInformada()
     {
 
          //Método apartir do phpUnit 9
