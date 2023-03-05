@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Warning":6,"CodeTests\\QueryBuilder\\SelectTest::testIfQueryBaseIsGeneratedWithSuccess":4,"Code\\QueryBuilder\\SelectTest::testIfQueryBaseIsGeneratedWithSuccess":4},"times":{"Warning":0.004,"CodeTests\\QueryBuilder\\SelectTest::testIfQueryBaseIsGeneratedWithSuccess":0.005,"Code\\QueryBuilder\\SelectTest::testIfQueryBaseIsGeneratedWithSuccess":0.005}}
