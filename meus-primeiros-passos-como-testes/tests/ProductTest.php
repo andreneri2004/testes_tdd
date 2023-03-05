@@ -23,7 +23,6 @@ class ProductTest extends TestCase
         print __METHOD__;
     }
 
-
     Public function testSeONomeDoProdutoESetadoCorretamente(){
         $product =$this->product;
         $product->setName('Carro');
