@@ -1,0 +1,3 @@
+criar um arquivo composer.json, dentro coloca no minimo {}.
+comando para instalar o phpunit:
+composer require phpunit/phpunit --dev

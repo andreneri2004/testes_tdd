@@ -15,4 +15,9 @@ class Select
     {
         return $this->query;
     }
+
+    public function where(String $fild, String $operator)
+    {
+        return $this->query.= ' WHERE '. $fild . ' '. $operator . ' :'. $fild ; 
+    }
 }
